@@ -2,10 +2,10 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 
 @Component({
   selector: 'app-scroll-view',
-  templateUrl: './scroll-view.component.html',
-  styleUrls: ['./scroll-view.component.scss']
+  templateUrl: './new-scroll-view.component.html',
+  styleUrls: ['./new-scroll-view.component.html']
 })
-export class ScrollViewComponent implements OnInit {
+export class NewScrollViewComponent implements OnInit {
 
   @ViewChild('sectionOne') sectionOne!: ElementRef;
   @ViewChild('sectionTwo') sectionTwo!: ElementRef;
@@ -42,16 +42,15 @@ export class ScrollViewComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
 
   checkOffsetTop() {
-    const pageOffSet = window.pageYOffset + 100;
-    if (pageOffSet >= this.oneOffset && pageOffSet < this.TwoOffset) {
+    if (window.pageYOffset >= this.oneOffset && window.pageYOffset < this.TwoOffset) {
       this.currentActive = 1;
-    } else if (pageOffSet >= this.TwoOffset && pageOffSet < this.ThreeOffset) {
+    } else if (window.pageYOffset >= this.TwoOffset && window.pageYOffset < this.ThreeOffset) {
       this.currentActive = 2;
-    } else if (pageOffSet >= this.ThreeOffset && pageOffSet < this.FourOffset) {
+    } else if (window.pageYOffset >= this.ThreeOffset && window.pageYOffset < this.FourOffset) {
       this.currentActive = 3;
-    } else if (pageOffSet >= this.FourOffset && pageOffSet < this.FiveOffset) {
+    } else if (window.pageYOffset >= this.FourOffset && window.pageYOffset < this.FiveOffset) {
       this.currentActive = 4;
-    } else if (pageOffSet >= this.FiveOffset){
+    } else if (window.pageYOffset >= this.FiveOffset){
       this.currentActive = 5;
     } else {
       this.currentActive = 0;
