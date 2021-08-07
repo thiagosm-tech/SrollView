@@ -1,7 +1,6 @@
-import { Directive, Host, HostListener, HostBinding, Input, OnInit, OnDestroy} from '@angular/core';
+import { Directive, Host, HostListener, HostBinding, Input, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
-import 'rxjs/add/operator/takeUntil';
-
+import { takeUntil } from 'rxjs/operators';
 import { ContentsDirective } from './contents.directive';
 
 @Directive({
@@ -11,7 +10,9 @@ import { ContentsDirective } from './contents.directive';
 export class ContentsLinkDirective implements OnInit, OnDestroy {
   ngUnsubscribe: Subject<void> = new Subject<void>();
 
+  @Input() name: any;
   @Input() href: any;
+
   @HostBinding('class.active') active = false;
 
   constructor(
@@ -19,11 +20,11 @@ export class ContentsLinkDirective implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.contents._activeSection$.pipe()
-      .takeUntil(this.ngUnsubscribe)
-      .subscribe((sectionName: string) => {
-        this.active = `#${sectionName}` === this.href;
-      });
+    this.contents._activeSection$.pipe(
+      takeUntil(this.ngUnsubscribe)
+    ).subscribe((sectionName: string) => {
+      this.active = `${sectionName}` === this.href.split('#')[1];
+    });
   }
 
   ngOnDestroy() {

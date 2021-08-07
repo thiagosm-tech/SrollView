@@ -23,7 +23,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["rxjs-compat"],
             "outputPath": "dist/scroll-view",
             "index": "src/index.html",
             "main": "src/main.ts",

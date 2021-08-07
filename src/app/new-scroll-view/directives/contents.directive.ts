@@ -1,8 +1,8 @@
-import { Directive, ElementRef, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Directive, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
-import 'rxjs/add/operator/filter';
+import { filter } from 'rxjs/operators';
 
 @Directive({
   selector: '[contents]',
@@ -45,7 +45,8 @@ export class ContentsDirective implements OnInit, OnChanges, OnDestroy {
 
   activeSection(): Observable<string> {
     return this._activeSection$
-      .asObservable()
-      .filter(section => !!section); // Prevent returning null values.
+      .asObservable().pipe(
+        filter(section => !!section)
+      )
   }
 }
