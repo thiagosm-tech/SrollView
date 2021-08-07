@@ -1,0 +1,42 @@
+.columnify {
+    display: flex;
+    position: relative;
+}
+
+.sections{
+    width: 80%;
+    min-height:1000px;
+
+    div {
+        width: 45%;
+        margin: 0 auto;
+    }
+}
+
+.table-column {
+    width: 20%;
+    position:-webkit-sticky; 
+    position:sticky; 
+    top:0;
+    height:50px;
+
+    li{
+        margin: .50rem;
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+        height: 20px;
+        border: solid 1px #000;
+        border-radius: 5px;
+        padding: 3px;
+        cursor: pointer;
+    }
+}
+
+.class{
+    background: red;
+}
+
